@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             WeekdayScroller(
               selectedDay: _selectedDay,
-              selectDay: (value) => setState(() {
+              changeDay: (value) => setState(() {
                 _selectedDay = value;
               }),
             ),

@@ -2,13 +2,31 @@
 
 A weekday picker where you can scroll between weeks.
 
-## Getting Started
+## Installing
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+To use this package, add `weekday_scroller` as a dependency in your `pubspec.yaml` file.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Usage
+
+```dart
+WeekdayScroller(
+  selectedDay: _selectedDay,
+  changeDay: (value) => setState(() {
+    _selectedDay = value;
+  }),
+),
+```
+
+## Custom styling
+You can use custom colors and labels by the optional parameters:
+
+* `weekdayText` specifies the weekday text: default is 'Week'
+* `weekdays` specifies the weekday strings ['Mon', 'Tue'...]
+* `backgroundColor`
+* `selectedColor` color of the selected day circle
+* `selectedTextColor` color of the selected digits text
+* `textColor` color of the unselected digits text
+* `weekdayColor` is the color of the weekdays 'Mon', 'Tue'...
+* `weeknumberColor`
+* `weeknumberTextColor`
+* `daysInWeek` specifies the number of weekdays to render, default is 5, so Monday to Friday
