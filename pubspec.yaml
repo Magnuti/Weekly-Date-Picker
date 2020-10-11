@@ -1,8 +1,7 @@
 name: weekday_scroller
-description: A new Flutter package project.
+description: A weekday picker where you can scroll between weeks.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/Magnuti/Weekday-Scroller
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
