@@ -2,6 +2,8 @@
 
 A weekday picker where you can scroll between weeks.
 
+![](demo-small.gif)
+
 ## Installing
 
 To use this package, add `weekday_scroller` as a dependency in your `pubspec.yaml` file.
