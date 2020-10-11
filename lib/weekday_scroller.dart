@@ -10,14 +10,15 @@ class WeekdayScroller extends StatefulWidget {
     @required this.changeDay,
     this.weekdayText = 'Week',
     this.weekdays = const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    this.backgroundColor = const Color(0xFFFFFFFF),
+    this.backgroundColor = const Color(0xFFFAFAFA),
+    this.unselectedColor = const Color(0xFFFAFAFA),
     this.selectedColor = const Color(0xFF2A2859),
     this.selectedTextColor = const Color(0xFFFFFFFF),
     this.textColor = const Color(0xFF000000),
     this.weekdayColor = const Color(0xFF303030),
     this.weeknumberColor = const Color(0xFFB2F5FE),
     this.weeknumberTextColor = const Color(0xFF000000),
-    this.daysInWeek = 5,
+    this.daysInWeek = 7,
   })  : assert(changeDay != null),
         assert(changeDay != null),
         super(key: key);
@@ -27,6 +28,7 @@ class WeekdayScroller extends StatefulWidget {
   final String weekdayText;
   final List<String> weekdays;
   final Color backgroundColor;
+  final Color unselectedColor;
   final Color selectedColor;
   final Color selectedTextColor;
   final Color textColor;
@@ -46,7 +48,9 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
   int _weeknumberNow;
   int _weeknumberInSwipe;
 
-  _WeekdayScrollerState() {
+  @override
+  void initState() {
+    super.initState();
     // Weekday calculation from https://en.wikipedia.org/wiki/ISO_week_date#Calculation
     int dayOfYear =
         int.parse(DateFormat('D').format(now)); // day count from. 1. January
@@ -59,6 +63,7 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12.0),
       height: 80,
+      color: widget.backgroundColor,
       child: Row(
         children: <Widget>[
           Container(
@@ -120,7 +125,7 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
             ),
             CircleAvatar(
               backgroundColor:
-                  isSelected ? widget.selectedColor : widget.backgroundColor,
+                  isSelected ? widget.selectedColor : widget.unselectedColor,
               radius: 16.0,
               child: Text(
                 '${dateTime.day}',
