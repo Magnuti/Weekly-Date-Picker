@@ -22,13 +22,13 @@ WeekdayScroller(
 ## Custom styling
 You can use custom colors and labels by the optional parameters:
 
-* `weekdayText` specifies the weekday text: default is 'Week'
-* `weekdays` specifies the weekday strings ['Mon', 'Tue'...]
+* `weekdayText` Specifies the weekday text: default is 'Week'
+* `weekdays` Specifies the weekday strings ['Mon', 'Tue'...]
 * `backgroundColor`
-* `selectedColor` color of the selected day circle
-* `selectedTextColor` color of the selected digits text
-* `textColor` color of the unselected digits text
-* `weekdayColor` is the color of the weekdays 'Mon', 'Tue'...
-* `weeknumberColor`
-* `weeknumberTextColor`
-* `daysInWeek` specifies the number of weekdays to render, default is 5, so Monday to Friday
+* `selectedColor` Color of the selected day circle
+* `selectedTextColor` Color of the selected digits text
+* `textColor` Color of the unselected digits text
+* `weekdayColor` Is the color of the weekdays 'Mon', 'Tue'...
+* `weeknumberColor` Color of the weekday container
+* `weeknumberTextColor` Color of the weekday text
+* `daysInWeek` Specifies the number of weekdays to render, default is 7, so Monday to Sunday

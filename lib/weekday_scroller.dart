@@ -25,16 +25,37 @@ class WeekdayScroller extends StatefulWidget {
 
   final DateTime selectedDay;
   final Function(DateTime) changeDay;
+
+  /// Specifies the weekday text: default is 'Week'
   final String weekdayText;
+
+  /// Specifies the weekday strings ['Mon', 'Tue'...]
   final List<String> weekdays;
+
   final Color backgroundColor;
+
+  /// Color of the selected day circle
   final Color unselectedColor;
+
+  /// Color of the selected digits text
   final Color selectedColor;
+
+  /// Color of the unselected digits text
   final Color selectedTextColor;
+
+  /// Color of the unselected digits text
   final Color textColor;
+
+  /// Is the color of the weekdays 'Mon', 'Tue'...
   final Color weekdayColor;
+
+  /// Color of the weekday container
   final Color weeknumberColor;
+
+  /// Color of the weekday text
   final Color weeknumberTextColor;
+
+  /// Specifies the number of weekdays to render, default is 7, so Monday to Sunday
   final int daysInWeek;
 
   @override
