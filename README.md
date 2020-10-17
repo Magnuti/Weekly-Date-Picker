@@ -2,7 +2,7 @@
 
 A weekday picker where you can scroll between weeks.
 
-![](demo-small.gif)
+<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/demo-small.gif">
 
 ## Installing
 
