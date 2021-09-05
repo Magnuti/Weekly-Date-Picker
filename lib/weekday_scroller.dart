@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 
 class WeekdayScroller extends StatefulWidget {
   WeekdayScroller({
-    Key key,
-    @required this.selectedDay,
-    @required this.changeDay,
+    Key? key,
+    required this.selectedDay,
+    required this.changeDay,
     this.weekdayText = 'Week',
     this.weekdays = const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     this.backgroundColor = const Color(0xFFFAFAFA),
@@ -19,11 +19,12 @@ class WeekdayScroller extends StatefulWidget {
     this.weeknumberColor = const Color(0xFFB2F5FE),
     this.weeknumberTextColor = const Color(0xFF000000),
     this.daysInWeek = 7,
-  })  : assert(changeDay != null),
-        assert(changeDay != null),
-        super(key: key);
+  }) : super(key: key);
 
+  /// The current selected day
   final DateTime selectedDay;
+
+  /// Callback function with the new selected date
   final Function(DateTime) changeDay;
 
   /// Specifies the weekday text: default is 'Week'
@@ -66,8 +67,8 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
   final controller = PageController(initialPage: 0);
   final DateTime now = DateTime.now();
 
-  int _weeknumberNow;
-  int _weeknumberInSwipe;
+  late int _weeknumberNow;
+  late int _weeknumberInSwipe;
 
   @override
   void initState() {

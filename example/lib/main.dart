@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -38,18 +38,15 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            WeekdayScroller(
-              selectedDay: _selectedDay,
-              changeDay: (value) => setState(() {
-                _selectedDay = value;
-              }),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          WeekdayScroller(
+            selectedDay: _selectedDay,
+            changeDay: (value) => setState(() {
+              _selectedDay = value;
+            }),
+          ),
+        ],
       ),
     );
   }
