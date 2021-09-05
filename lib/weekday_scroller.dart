@@ -130,10 +130,7 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
 
   Widget _dateButton(DateTime dateTime) {
     final String weekday = widget.weekdays[dateTime.weekday - 1];
-    // No good compare
-    final bool isSelected = dateTime.day == widget.selectedDay.day &&
-        dateTime.month == widget.selectedDay.month &&
-        dateTime.year == widget.selectedDay.year;
+    final bool isSelected = _isSameDate(dateTime, widget.selectedDay);
 
     return Expanded(
       // TODO: The GestureDetector doesn't fill the entire parent, only the child, so the onTap may be working so so
@@ -145,22 +142,34 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
               '$weekday',
               style: TextStyle(fontSize: 12.0, color: widget.weekdayColor),
             ),
-            CircleAvatar(
-              backgroundColor:
-                  isSelected ? widget.selectedColor : widget.unselectedColor,
-              radius: 16.0,
-              child: Text(
-                '${dateTime.day}',
-                style: TextStyle(
-                    fontSize: 16.0,
-                    color: isSelected
-                        ? widget.selectedTextColor
-                        : widget.textColor),
+            Container(
+              padding: const EdgeInsets.all(1.0),
+              decoration: BoxDecoration(
+                  color: _isSameDate(dateTime, now)
+                      ? widget.selectedColor
+                      : Colors.transparent,
+                  shape: BoxShape.circle),
+              child: CircleAvatar(
+                backgroundColor:
+                    isSelected ? widget.selectedColor : widget.unselectedColor,
+                radius: 14.0,
+                child: Text(
+                  '${dateTime.day}',
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      color: isSelected
+                          ? widget.selectedTextColor
+                          : widget.textColor),
+                ),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  bool _isSameDate(DateTime d1, DateTime d2) {
+    return d1.day == d2.day && d1.month == d2.month && d1.year == d2.year;
   }
 }
