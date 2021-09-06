@@ -133,37 +133,41 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
     final bool isSelected = _isSameDate(dateTime, widget.selectedDay);
 
     return Expanded(
-      // TODO: The GestureDetector doesn't fill the entire parent, only the child, so the onTap may be working so so
       child: GestureDetector(
         onTap: () => widget.changeDay(dateTime),
-        child: Column(
-          children: <Widget>[
-            Text(
-              '$weekday',
-              style: TextStyle(fontSize: 12.0, color: widget.weekdayColor),
-            ),
-            Container(
-              padding: const EdgeInsets.all(1.0),
-              decoration: BoxDecoration(
-                  color: _isSameDate(dateTime, now)
+        child: Container(
+          // Bugfix, the transparent container makes the GestureDetector fill the Expanded
+          color: Colors.transparent,
+          child: Column(
+            children: <Widget>[
+              Text(
+                '$weekday',
+                style: TextStyle(fontSize: 12.0, color: widget.weekdayColor),
+              ),
+              Container(
+                padding: const EdgeInsets.all(1.0),
+                decoration: BoxDecoration(
+                    color: _isSameDate(dateTime, now)
+                        ? widget.selectedColor
+                        : Colors.transparent,
+                    shape: BoxShape.circle),
+                child: CircleAvatar(
+                  backgroundColor: isSelected
                       ? widget.selectedColor
-                      : Colors.transparent,
-                  shape: BoxShape.circle),
-              child: CircleAvatar(
-                backgroundColor:
-                    isSelected ? widget.selectedColor : widget.unselectedColor,
-                radius: 14.0,
-                child: Text(
-                  '${dateTime.day}',
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      color: isSelected
-                          ? widget.selectedTextColor
-                          : widget.textColor),
+                      : widget.unselectedColor,
+                  radius: 14.0,
+                  child: Text(
+                    '${dateTime.day}',
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        color: isSelected
+                            ? widget.selectedTextColor
+                            : widget.textColor),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
