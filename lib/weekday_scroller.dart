@@ -11,11 +11,11 @@ class WeekdayScroller extends StatefulWidget {
     this.weekdayText = 'Week',
     this.weekdays = const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     this.backgroundColor = const Color(0xFFFAFAFA),
-    this.unselectedColor = const Color(0xFFFAFAFA),
     this.selectedColor = const Color(0xFF2A2859),
     this.selectedTextColor = const Color(0xFFFFFFFF),
     this.textColor = const Color(0xFF000000),
     this.weekdayColor = const Color(0xFF303030),
+    this.enableWeeknumberText = true,
     this.weeknumberColor = const Color(0xFFB2F5FE),
     this.weeknumberTextColor = const Color(0xFF000000),
     this.daysInWeek = 7,
@@ -33,10 +33,8 @@ class WeekdayScroller extends StatefulWidget {
   /// Specifies the weekday strings ['Mon', 'Tue'...]
   final List<String> weekdays;
 
+  /// Background color
   final Color backgroundColor;
-
-  /// Color of the selected day circle
-  final Color unselectedColor;
 
   /// Color of the selected digits text
   final Color selectedColor;
@@ -49,6 +47,9 @@ class WeekdayScroller extends StatefulWidget {
 
   /// Is the color of the weekdays 'Mon', 'Tue'...
   final Color weekdayColor;
+
+  /// Set to false to hide the weeknumber textfield to the left of the slider
+  final bool enableWeeknumberText;
 
   /// Color of the weekday container
   final Color weeknumberColor;
@@ -83,19 +84,20 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.0),
-      height: 80,
+      height: 64,
       color: widget.backgroundColor,
       child: Row(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(8.0),
-            color: widget.weeknumberColor,
-            child: Text(
-              '${widget.weekdayText} $_weeknumberInSwipe',
-              style: TextStyle(color: widget.weeknumberTextColor),
-            ),
-          ),
+          widget.enableWeeknumberText
+              ? Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: widget.weeknumberColor,
+                  child: Text(
+                    '${widget.weekdayText} $_weeknumberInSwipe',
+                    style: TextStyle(color: widget.weeknumberTextColor),
+                  ),
+                )
+              : Container(),
           Expanded(
             child: PageView.builder(
               controller: controller,
@@ -107,6 +109,7 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (_, weekOffset) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: _weekdays(weekOffset),
               ),
             ),
@@ -139,14 +142,19 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
           // Bugfix, the transparent container makes the GestureDetector fill the Expanded
           color: Colors.transparent,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                '$weekday',
-                style: TextStyle(fontSize: 12.0, color: widget.weekdayColor),
+              Padding(
+                padding: EdgeInsets.only(bottom: 4.0),
+                child: Text(
+                  '$weekday',
+                  style: TextStyle(fontSize: 12.0, color: widget.weekdayColor),
+                ),
               ),
               Container(
                 padding: const EdgeInsets.all(1.0),
                 decoration: BoxDecoration(
+                    // Border around today's date
                     color: _isSameDate(dateTime, now)
                         ? widget.selectedColor
                         : Colors.transparent,
@@ -154,7 +162,7 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
                 child: CircleAvatar(
                   backgroundColor: isSelected
                       ? widget.selectedColor
-                      : widget.unselectedColor,
+                      : widget.backgroundColor,
                   radius: 14.0,
                   child: Text(
                     '${dateTime.day}',
