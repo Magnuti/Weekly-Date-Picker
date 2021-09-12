@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:weekday_scroller/weekday_scroller.dart';
+import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,12 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Weekday Scroller Example',
+      title: 'Weekly Date Picker Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Weekday Scroller Example'),
+      home: MyHomePage(title: 'Weekly Date Picker Example'),
     );
   }
 }
@@ -40,11 +40,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          WeekdayScroller(
+          WeeklyDatePicker(
             selectedDay: _selectedDay,
             changeDay: (value) => setState(() {
               _selectedDay = value;
             }),
+            enableWeeknumberText: false,
+            weeknumberColor: const Color(0xFF57AF87),
+            weeknumberTextColor: Colors.white,
+            backgroundColor: const Color(0xFF1A1A1A),
+            weekdayTextColor: const Color(0xFF8A8A8A),
+            digitsColor: Colors.white,
+            selectedBackgroundColor: const Color(0xFF57AF87),
+            weekdays: ["Mo", "Tu", "We", "Th", "Fr"],
+            daysInWeek: 5,
           ),
         ],
       ),

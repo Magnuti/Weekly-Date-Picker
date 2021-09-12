@@ -1,31 +1,31 @@
-# Weekday Scroller
+# Weekly Date Picker
 
 A weekday picker where you can scroll between weeks.
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/white_with_week.gif">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekly-Date-Picker/main/assets/white_with_week.gif">
 
 ## Custom styling
 
 ### You can remove the week text
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/white_without_week.jpg" width="590">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekly-Date-Picker/main/assets/white_without_week.jpg" width="590">
 
 ### Add custom colors
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/dark_without_week.jpg" width="590">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekly-Date-Picker/main/assets/dark_without_week.jpg" width="590">
 
 ### You can also make only the weekdays selectable
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/dark_five_days.jpg" width="590">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekly-Date-Picker/main/assets/dark_five_days.jpg" width="590">
 
 ## Installing
 
-To use this package, add `weekday_scroller` as a dependency in your `pubspec.yaml` file.
+To use this package, add `weekly_date_picker` as a dependency in your `pubspec.yaml` file.
 
 ## Usage
 
 ```dart
-WeekdayScroller(
+WeeklyDatePicker(
   selectedDay: _selectedDay, // DateTime
   changeDay: (value) => setState(() {
     _selectedDay = value;

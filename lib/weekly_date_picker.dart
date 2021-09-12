@@ -1,10 +1,10 @@
-library day_scroller;
+library weekly_date_picker;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class WeekdayScroller extends StatefulWidget {
-  WeekdayScroller({
+class WeeklyDatePicker extends StatefulWidget {
+  WeeklyDatePicker({
     Key? key,
     required this.selectedDay,
     required this.changeDay,
@@ -63,10 +63,10 @@ class WeekdayScroller extends StatefulWidget {
   final int daysInWeek;
 
   @override
-  _WeekdayScrollerState createState() => _WeekdayScrollerState();
+  _WeeklyDatePickerState createState() => _WeeklyDatePickerState();
 }
 
-class _WeekdayScrollerState extends State<WeekdayScroller> {
+class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
   final controller = PageController(initialPage: 0);
   final DateTime now = DateTime.now();
 

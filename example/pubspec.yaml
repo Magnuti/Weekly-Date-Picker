@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  weekday_scroller:
+  weekly_date_picker:
     path: ../
 
 

@@ -1,7 +1,7 @@
-name: weekday_scroller
-description: A weekday picker where you can scroll between weeks and select a weekday.
-version: 1.1.0
-homepage: https://github.com/Magnuti/Weekday-Scroller
+name: weekly_date_picker
+description: A weekly date picker where you can scroll between weeks and select a date.
+version: 1.1.3
+homepage: https://github.com/Magnuti/Weekly-Date-Picker
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
