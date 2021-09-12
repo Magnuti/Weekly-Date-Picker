@@ -8,15 +8,15 @@ A weekday picker where you can scroll between weeks.
 
 ### You can remove the week text
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/white_without_week.gif">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/white_without_week.jpg" width="590">
 
 ### Add custom colors
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/dark_without_week.gif">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/dark_without_week.jpg" width="590">
 
 ### You can also make only the weekdays selectable
 
-<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/dark_five_days.gif">
+<img src="https://raw.githubusercontent.com/Magnuti/Weekday-Scroller/main/assets/dark_five_days.jpg" width="590">
 
 ## Installing
 
