@@ -11,15 +11,17 @@ class WeekdayScroller extends StatefulWidget {
     this.weekdayText = 'Week',
     this.weekdays = const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     this.backgroundColor = const Color(0xFFFAFAFA),
-    this.selectedColor = const Color(0xFF2A2859),
-    this.selectedTextColor = const Color(0xFFFFFFFF),
-    this.textColor = const Color(0xFF000000),
-    this.weekdayColor = const Color(0xFF303030),
+    this.selectedBackgroundColor = const Color(0xFF2A2859),
+    this.selectedDigitColor = const Color(0xFFFFFFFF),
+    this.digitsColor = const Color(0xFF000000),
+    this.weekdayTextColor = const Color(0xFF303030),
     this.enableWeeknumberText = true,
     this.weeknumberColor = const Color(0xFFB2F5FE),
     this.weeknumberTextColor = const Color(0xFF000000),
     this.daysInWeek = 7,
-  }) : super(key: key);
+  })  : assert(weekdays.length == daysInWeek,
+            "weekdays must be of length $daysInWeek"),
+        super(key: key);
 
   /// The current selected day
   final DateTime selectedDay;
@@ -37,16 +39,16 @@ class WeekdayScroller extends StatefulWidget {
   final Color backgroundColor;
 
   /// Color of the selected digits text
-  final Color selectedColor;
+  final Color selectedBackgroundColor;
 
   /// Color of the unselected digits text
-  final Color selectedTextColor;
+  final Color selectedDigitColor;
 
   /// Color of the unselected digits text
-  final Color textColor;
+  final Color digitsColor;
 
   /// Is the color of the weekdays 'Mon', 'Tue'...
-  final Color weekdayColor;
+  final Color weekdayTextColor;
 
   /// Set to false to hide the weeknumber textfield to the left of the slider
   final bool enableWeeknumberText;
@@ -148,7 +150,8 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
                 padding: EdgeInsets.only(bottom: 4.0),
                 child: Text(
                   '$weekday',
-                  style: TextStyle(fontSize: 12.0, color: widget.weekdayColor),
+                  style:
+                      TextStyle(fontSize: 12.0, color: widget.weekdayTextColor),
                 ),
               ),
               Container(
@@ -156,12 +159,12 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
                 decoration: BoxDecoration(
                     // Border around today's date
                     color: _isSameDate(dateTime, now)
-                        ? widget.selectedColor
+                        ? widget.selectedBackgroundColor
                         : Colors.transparent,
                     shape: BoxShape.circle),
                 child: CircleAvatar(
                   backgroundColor: isSelected
-                      ? widget.selectedColor
+                      ? widget.selectedBackgroundColor
                       : widget.backgroundColor,
                   radius: 14.0,
                   child: Text(
@@ -169,8 +172,8 @@ class _WeekdayScrollerState extends State<WeekdayScroller> {
                     style: TextStyle(
                         fontSize: 16.0,
                         color: isSelected
-                            ? widget.selectedTextColor
-                            : widget.textColor),
+                            ? widget.selectedDigitColor
+                            : widget.digitsColor),
                   ),
                 ),
               ),
