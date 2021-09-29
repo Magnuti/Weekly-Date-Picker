@@ -1,7 +1,8 @@
 library weekly_date_picker;
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:week_of_year/week_of_year.dart';
+import "package:weekly_date_picker/datetime_apis.dart";
 
 class WeeklyDatePicker extends StatefulWidget {
   WeeklyDatePicker({
@@ -67,20 +68,23 @@ class WeeklyDatePicker extends StatefulWidget {
 }
 
 class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
-  final controller = PageController(initialPage: 0);
-  final DateTime now = DateTime.now();
+  final _controller = PageController(initialPage: 0);
+  final DateTime _todaysDateTime = DateTime.now();
 
-  late int _weeknumberNow;
+  late final DateTime _initialSelectedDay;
   late int _weeknumberInSwipe;
 
   @override
   void initState() {
     super.initState();
-    // Weekday calculation from https://en.wikipedia.org/wiki/ISO_week_date#Calculation
-    int dayOfYear =
-        int.parse(DateFormat('D').format(now)); // day count from. 1. January
-    _weeknumberNow = ((dayOfYear - now.weekday + 10) / 7).floor();
-    _weeknumberInSwipe = _weeknumberNow;
+    _initialSelectedDay = widget.selectedDay;
+    _weeknumberInSwipe = widget.selectedDay.weekOfYear;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -102,10 +106,12 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
               : Container(),
           Expanded(
             child: PageView.builder(
-              controller: controller,
+              controller: _controller,
               onPageChanged: (int index) {
                 setState(() {
-                  _weeknumberInSwipe = _weeknumberNow + index;
+                  _weeknumberInSwipe = _initialSelectedDay
+                      .add(Duration(days: 7 * index))
+                      .weekOfYear;
                 });
               },
               scrollDirection: Axis.horizontal,
@@ -126,8 +132,9 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
     List<Widget> weekdays = [];
 
     for (int i = 0; i < widget.daysInWeek; i++) {
-      int offset = i + 1 - now.weekday;
-      DateTime dateTime = now.add(Duration(days: weekIndex * 7 + offset));
+      int offset = i + 1 - _initialSelectedDay.weekday;
+      DateTime dateTime =
+          _initialSelectedDay.add(Duration(days: weekIndex * 7 + offset));
       weekdays.add(_dateButton(dateTime));
     }
     return weekdays;
@@ -135,7 +142,7 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
 
   Widget _dateButton(DateTime dateTime) {
     final String weekday = widget.weekdays[dateTime.weekday - 1];
-    final bool isSelected = _isSameDate(dateTime, widget.selectedDay);
+    final bool isSelected = dateTime.isSameDateAs(widget.selectedDay);
 
     return Expanded(
       child: GestureDetector(
@@ -158,7 +165,7 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
                 padding: const EdgeInsets.all(1.0),
                 decoration: BoxDecoration(
                     // Border around today's date
-                    color: _isSameDate(dateTime, now)
+                    color: dateTime.isSameDateAs(_todaysDateTime)
                         ? widget.selectedBackgroundColor
                         : Colors.transparent,
                     shape: BoxShape.circle),
@@ -182,9 +189,5 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
         ),
       ),
     );
-  }
-
-  bool _isSameDate(DateTime d1, DateTime d2) {
-    return d1.day == d2.day && d1.month == d2.month && d1.year == d2.year;
   }
 }

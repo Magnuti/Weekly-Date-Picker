@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Replaced custom weeknumber calculation (which didn't work with leap years) with the `week_of_year` package.
+- Fixed proper dispose of controller
+- Added tests
+
 ## 1.1.3
 Fixed wrong naming due to previous package name
 
