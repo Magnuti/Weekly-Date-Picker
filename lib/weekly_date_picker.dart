@@ -68,15 +68,19 @@ class WeeklyDatePicker extends StatefulWidget {
 }
 
 class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
-  final _controller = PageController(initialPage: 0);
   final DateTime _todaysDateTime = DateTime.now();
 
+  // About 100 years back in time should be sufficient for most users, 52 weeks * 100
+  final int _weekIndexOffset = 5200;
+
+  late final PageController _controller;
   late final DateTime _initialSelectedDay;
   late int _weeknumberInSwipe;
 
   @override
   void initState() {
     super.initState();
+    _controller = PageController(initialPage: _weekIndexOffset);
     _initialSelectedDay = widget.selectedDay;
     _weeknumberInSwipe = widget.selectedDay.weekOfYear;
   }
@@ -110,15 +114,15 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
               onPageChanged: (int index) {
                 setState(() {
                   _weeknumberInSwipe = _initialSelectedDay
-                      .add(Duration(days: 7 * index))
+                      .add(Duration(days: 7 * (index - _weekIndexOffset)))
                       .weekOfYear;
                 });
               },
               scrollDirection: Axis.horizontal,
-              itemBuilder: (_, weekOffset) => Row(
+              itemBuilder: (_, weekIndex) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: _weekdays(weekOffset),
+                children: _weekdays(weekIndex - _weekIndexOffset),
               ),
             ),
           ),
@@ -132,9 +136,10 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
     List<Widget> weekdays = [];
 
     for (int i = 0; i < widget.daysInWeek; i++) {
-      int offset = i + 1 - _initialSelectedDay.weekday;
-      DateTime dateTime =
-          _initialSelectedDay.add(Duration(days: weekIndex * 7 + offset));
+      final int offset = i + 1 - _initialSelectedDay.weekday;
+      final int daysToAdd = weekIndex * 7 + offset;
+      final DateTime dateTime =
+          _initialSelectedDay.add(Duration(days: daysToAdd));
       weekdays.add(_dateButton(dateTime));
     }
     return weekdays;

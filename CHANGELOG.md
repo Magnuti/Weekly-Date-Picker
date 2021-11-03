@@ -1,3 +1,7 @@
+## 1.3.0
+
+Made it possible to swipe backwards in time from today's date.
+
 ## 1.2.0
 
 - Replaced custom weeknumber calculation (which didn't work with leap years) with the `week_of_year` package.
@@ -5,6 +9,7 @@
 - Added tests
 
 ## 1.1.3
+
 Fixed wrong naming due to previous package name
 
 ## 1.1.2

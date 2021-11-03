@@ -212,4 +212,37 @@ void main() {
       }
     });
   });
+
+  testWidgets("WeeklyDatePicker works backwards in time",
+      (WidgetTester tester) async {
+    withClock(Clock.fixed(defaultTime), () async {
+      await tester.pumpWidget(
+        MaterialApp(
+            home: WeeklyDatePicker(
+                selectedDay: clock.now(), changeDay: (value) => {})),
+      );
+
+      expect(find.text("Week 39"), findsOneWidget);
+
+      final pageViewFinder = find.byType(PageView);
+      final nextWeekDateFinder = find.text("21");
+
+      await tester.dragUntilVisible(
+        nextWeekDateFinder,
+        pageViewFinder,
+        Offset(250, 0),
+      );
+
+      expect(nextWeekDateFinder, findsOneWidget);
+
+      final List<int> previousWeekDates = [20, 21, 22, 23, 24, 25, 26];
+      for (int date in previousWeekDates) {
+        final dateFinder = find.text(date.toString());
+        expect(dateFinder, findsOneWidget);
+      }
+
+      expect(find.text("Week 38"), findsOneWidget);
+      expect(find.text("Week 39"), findsNothing);
+    });
+  });
 }
