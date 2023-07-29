@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,21 +17,21 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Weekly Date Picker Example'),
+      home: const MyHomePage(title: 'Weekly Date Picker Example'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   DateTime _selectedDay = DateTime.now();
 
   @override
@@ -52,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             weekdayTextColor: const Color(0xFF8A8A8A),
             digitsColor: Colors.white,
             selectedBackgroundColor: const Color(0xFF57AF87),
-            weekdays: ["Mo", "Tu", "We", "Th", "Fr"],
+            weekdays: const ["Mo", "Tu", "We", "Th", "Fr"],
             daysInWeek: 5,
           ),
         ],

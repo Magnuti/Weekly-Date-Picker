@@ -1,3 +1,7 @@
+## 1.3.1
+
+Upgraded Flutter version to 3.
+
 ## 1.3.0
 
 Made it possible to swipe backwards in time from today's date.
