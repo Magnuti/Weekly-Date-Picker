@@ -114,7 +114,7 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
               onPageChanged: (int index) {
                 setState(() {
                   _weeknumberInSwipe = _initialSelectedDay
-                      .add(Duration(days: 7 * (index - _weekIndexOffset)))
+                      .addDays(7 * (index - _weekIndexOffset))
                       .weekOfYear;
                 });
               },
@@ -138,8 +138,7 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
     for (int i = 0; i < widget.daysInWeek; i++) {
       final int offset = i + 1 - _initialSelectedDay.weekday;
       final int daysToAdd = weekIndex * 7 + offset;
-      final DateTime dateTime =
-          _initialSelectedDay.add(Duration(days: daysToAdd));
+      final DateTime dateTime = _initialSelectedDay.addDays(daysToAdd);
       weekdays.add(_dateButton(dateTime));
     }
     return weekdays;

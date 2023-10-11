@@ -4,4 +4,8 @@ extension CompareDates on DateTime {
         this.month == other.month &&
         this.year == other.year;
   }
+
+  DateTime addDays(int days) {
+    return DateTime(this.year, this.month, this.day + days);
+  }
 }

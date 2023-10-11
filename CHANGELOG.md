@@ -1,3 +1,7 @@
+## 1.3.2
+
+Fixed a bug with daylight savings causing the next day to not be calculated properly.
+
 ## 1.3.1
 
 Upgraded Flutter version to 3.

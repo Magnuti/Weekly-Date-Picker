@@ -38,4 +38,27 @@ void main() {
       expect(d1.isSameDateAs(d2), false);
     });
   });
+
+  group("DateTime addDate extension should work ", () {
+    test("Add dates should work", () {
+      DateTime date = new DateTime(2023, 1, 1);
+      expect(date.addDays(1).isSameDateAs(DateTime(2023, 1, 2)), true);
+      expect(date.addDays(30).isSameDateAs(DateTime(2023, 1, 31)), true);
+      expect(date.addDays(31).isSameDateAs(DateTime(2023, 2, 1)), true);
+    });
+
+    test("Add dates should work with daylight savings", () {
+      DateTime date = new DateTime(2023, 10, 29);
+      expect(date.addDays(1).isSameDateAs(DateTime(2023, 10, 30)), true);
+
+      // This one should fail since that date is daylight savings in Europe
+      expect(date.add(Duration(days: 1)).isSameDateAs(DateTime(2023, 10, 30)),
+          false);
+    });
+
+    test("Add dates should works over new year", () {
+      DateTime date = new DateTime(2020, 12, 30);
+      expect(date.addDays(2).isSameDateAs(DateTime(2021, 1, 1)), true);
+    });
+  });
 }
