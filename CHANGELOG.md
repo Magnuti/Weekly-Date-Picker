@@ -1,3 +1,17 @@
+## 1.4.2
+
+Small README update.
+
+## 1.4.1
+
+No functional changes. Fixed `CHANGELOG.md` to format correctly.
+
+## 1.4.0
+
+Added possibility to change the border color of the selected digit.
+
+- Renamed `selectedBackgroundColor` to `selectedDigitBackgroundColor`
+
 ## 1.3.2
 
 Fixed a bug with daylight savings causing the next day to not be calculated properly.

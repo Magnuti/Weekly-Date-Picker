@@ -40,8 +40,9 @@ You can use custom colors and labels by the optional parameters:
 - `weekdayText` Specifies the weekday text: default is 'Week'
 - `weekdays` Specifies the weekday strings ['Mon', 'Tue'...]
 - `backgroundColor` Background color
-- `selectedBackgroundColor` Color of the selected day circle
-- `selectedDigitColor` Color of the selected digits text
+- `selectedDigitBackgroundColor` Color of the selected day circle
+- `selectedDigitBorderColor` Color of the border of the selected day circle
+- `selectedDigitColor` Color of the selected digit text
 - `digitsColor` Color of the unselected digits text
 - `weekdayTextColor` Is the color of the weekdays 'Mon', 'Tue'...
 - `enableWeeknumberText` Set to false to hide the weeknumber textfield to the left of the slider

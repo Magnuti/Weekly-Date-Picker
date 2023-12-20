@@ -1,6 +1,6 @@
 name: weekly_date_picker
 description: A weekly date picker where you can scroll between weeks and select a date.
-version: 1.3.2
+version: 1.4.2
 homepage: https://github.com/Magnuti/Weekly-Date-Picker
 
 environment:
