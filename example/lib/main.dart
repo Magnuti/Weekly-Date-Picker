@@ -53,7 +53,7 @@ class MyHomePageState extends State<MyHomePage> {
             backgroundColor: const Color(0xFF1A1A1A),
             weekdayTextColor: const Color(0xFF8A8A8A),
             digitsColor: Colors.white,
-            selectedBackgroundColor: const Color(0xFF57AF87),
+            selectedDigitBackgroundColor: const Color(0xFF57AF87),
             weekdays: const ["Mo", "Tu", "We", "Th", "Fr"],
             daysInWeek: 5,
           ),

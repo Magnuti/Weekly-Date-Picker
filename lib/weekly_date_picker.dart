@@ -12,7 +12,9 @@ class WeeklyDatePicker extends StatefulWidget {
     this.weekdayText = 'Week',
     this.weekdays = const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     this.backgroundColor = const Color(0xFFFAFAFA),
-    this.selectedBackgroundColor = const Color(0xFF2A2859),
+    this.selectedDigitBackgroundColor = const Color(0xFF2A2859),
+    this.selectedDigitBorderColor =
+        const Color(0x00000000), // Transparent color
     this.selectedDigitColor = const Color(0xFFFFFFFF),
     this.digitsColor = const Color(0xFF000000),
     this.weekdayTextColor = const Color(0xFF303030),
@@ -39,10 +41,13 @@ class WeeklyDatePicker extends StatefulWidget {
   /// Background color
   final Color backgroundColor;
 
-  /// Color of the selected digits text
-  final Color selectedBackgroundColor;
+  /// Color of the selected day circle
+  final Color selectedDigitBackgroundColor;
 
-  /// Color of the unselected digits text
+  /// Color of the border of the selected day circle
+  final Color selectedDigitBorderColor;
+
+  /// Color of the selected digit text
   final Color selectedDigitColor;
 
   /// Color of the unselected digits text
@@ -147,6 +152,7 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
   Widget _dateButton(DateTime dateTime) {
     final String weekday = widget.weekdays[dateTime.weekday - 1];
     final bool isSelected = dateTime.isSameDateAs(widget.selectedDay);
+    final bool isTodaysDate = dateTime.isSameDateAs(_todaysDateTime);
 
     return Expanded(
       child: GestureDetector(
@@ -169,13 +175,13 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
                 padding: const EdgeInsets.all(1.0),
                 decoration: BoxDecoration(
                     // Border around today's date
-                    color: dateTime.isSameDateAs(_todaysDateTime)
-                        ? widget.selectedBackgroundColor
+                    color: isTodaysDate
+                        ? widget.selectedDigitBorderColor
                         : Colors.transparent,
                     shape: BoxShape.circle),
                 child: CircleAvatar(
                   backgroundColor: isSelected
-                      ? widget.selectedBackgroundColor
+                      ? widget.selectedDigitBackgroundColor
                       : widget.backgroundColor,
                   radius: 14.0,
                   child: Text(
